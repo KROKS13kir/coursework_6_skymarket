@@ -20,7 +20,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
     phone = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
-    role = models.CharField(choices=UserRoles.choices, max_length=10)
+    role = models.CharField(choices=UserRoles.choices, default=UserRoles.USER, max_length=13)
     is_active = models.BooleanField()
 
     @property
