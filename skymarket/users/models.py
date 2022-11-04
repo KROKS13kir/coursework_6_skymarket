@@ -19,9 +19,11 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
     phone = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, max_length=50)
     role = models.CharField(choices=UserRoles.choices, default=UserRoles.USER, max_length=13)
-    is_active = models.BooleanField()
+    password = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='user_avatars/', null=True)
+    is_active = models.BooleanField(null=True, default=True)
 
     @property
     def is_admin(self):

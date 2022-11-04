@@ -20,7 +20,7 @@ class UserRegistrationSerializer(BaseUserRegistrationSerializer):
         return user
 
 
-class CurrentUserSerializer(serializers.ModelSerializer):
+class UserCurrentSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
