@@ -1,4 +1,3 @@
-# TODO здесь производится настройка пермишенов для нашего проекта
 from rest_framework.permissions import BasePermission
 
 from users.models import UserRoles

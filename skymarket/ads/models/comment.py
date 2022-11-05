@@ -1,14 +1,14 @@
+from django.conf import settings
 from django.db import models
 
 from ads.models.ad import Ad
-from users.models import User
 
 
 class Comment(models.Model):
-    text = models.TextField(blank=True, max_length=4000)
+    text = models.CharField(max_length=255, null=False, blank=False)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name="comments")
 
     class Meta:
         verbose_name = 'Comment'
