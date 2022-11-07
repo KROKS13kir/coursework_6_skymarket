@@ -3,6 +3,7 @@ from rest_framework import pagination, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 
+from ads.filters import AdFilter
 from ads.models.ad import Ad
 from ads.permissions import IsOwner, IsAdmin
 from ads.serializers.ad import AdSerializer, AdDetailSerializer
@@ -19,6 +20,7 @@ class AdViewSet(viewsets.ModelViewSet):
     pagination_class = AdPagination
     permission_classes = (AllowAny,)
     filter_backends = (DjangoFilterBackend,)
+    filterset_class = AdFilter
 
     def perform_create(self, serializer):
         user = self.request.user
